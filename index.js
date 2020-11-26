@@ -13,7 +13,7 @@ const config = {
     appId: "1:786330267222:web:6a7efbd96873baf20cd5f7",
     measurementId: "G-2LX744EQQK"
 };
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 6000;
 const server = http.createServer(function (req, res) {
     console.log(`${req.method} request received at ${req.url}`);
     if (req.url === '/') {
@@ -39,6 +39,6 @@ const server = http.createServer(function (req, res) {
     }
 });
 
-server.listen(3001, function () {
+server.listen(PORT, function () {
     console.log("Listening on port http://localhost:3000");
 });
