@@ -13,9 +13,10 @@ const config = {
     appId: "1:786330267222:web:6a7efbd96873baf20cd5f7",
     measurementId: "G-2LX744EQQK"
 };
+const PORT = process.env.PORT || 3000;
 const server = http.createServer(function (req, res) {
     console.log(`${req.method} request received at ${req.url}`);
-    if (req.url === '/json') {
+    if (req.url === '/') {
         res.setHeader('Content-Type', 'application/json');
         let newList=[];
         res.statusCode = 200; // 200 = OK
