@@ -31,8 +31,7 @@ var portscanner = require('portscanner');
 
 portscanner.findAPortNotInUse([5000, 3010], '127.0.0.1').then(port => {
     console.log('Port' + port + ' is available!');
-  const p = process.env.PORT || 5000;
     app.listen(port, () => {
-        console.log(`Example app listening at http://localhost:${p}`)
+        console.log(`Example app listening at http://localhost:5000`)
     })
 })
