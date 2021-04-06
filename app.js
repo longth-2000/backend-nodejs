@@ -7,7 +7,7 @@ const {MongoClient} = require('mongodb')
 var routes = require('./src/nodejs/routes/routes');
 app.use(bodyParser.json());
 app.use(cors());
-const PORT =3000;
+const PORT =process.env.PORT || 5000;
 //ket noi router
 app.use(routes);
 
