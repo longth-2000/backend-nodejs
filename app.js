@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 const path = require('path');
 const mongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://duongsau1211:dolananh@cluster0.zq7aa.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://duongsau1211:dolananh@cluster0.zq7aa.mongodb.net/DB?retryWrites=true&w=majority";
 var routes = require('./src/nodejs/routes/routes');
 app.use(bodyParser.json());
 app.use(cors());
