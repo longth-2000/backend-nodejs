@@ -2,7 +2,7 @@
   "name": "back",
   "version": "1.0.0",
   "scripts": {
-    "start": "node app.js",
+    "start": "node index.js",
   },
   "keywords": [
   "example",
@@ -111,7 +111,7 @@
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
-  "main": "app.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },

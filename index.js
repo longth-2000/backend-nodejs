@@ -1,44 +1,38 @@
-const firebase = require("firebase/app");
-require("firebase/auth");
-require("firebase/firestore");
-require("firebase/database");
-const http = require('http');
-const config = {
-    apiKey: "AIzaSyC-p0KqYoqvSsf6jDZJxTNIIyCIj-QRJDg",
-    authDomain: "web200-4957a.firebaseapp.com",
-    databaseURL: "https://web200-4957a.firebaseio.com",
-    projectId: "web200-4957a",
-    storageBucket: "web200-4957a.appspot.com",
-    messagingSenderId: "786330267222",
-    appId: "1:786330267222:web:6a7efbd96873baf20cd5f7",
-    measurementId: "G-2LX744EQQK"
-};
-const PORT = process.env.PORT || 6000;
-const server = http.createServer(function (req, res) {
-    console.log(`${req.method} request received at ${req.url}`);
-    if (req.url === '/') {
-        res.setHeader('Content-Type', 'application/json');
-        let newList=[];
-        res.statusCode = 200; // 200 = OK
-        if (!firebase.apps.length) {
-            try {
-                firebase.initializeApp(config)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        let db=firebase.database().ref('/post');
-        db.on('value',(datasnap)=>{
-            let news=datasnap.val();
-            console.log(news);
-            newList=Object.entries(news).reverse();
-            res.write(JSON.stringify(newList));
-            res.end();
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var cors = require('cors');
+const path = require('path');
+var mongoClient = require('mongodb').MongoClient;
+var routes = require('./src/nodejs/routes/routes');
+app.use(bodyParser.json());
+app.use(cors());
+//ket noi router
+app.use(routes);
+/*
+app.get('/', (req, res) => {
+    mongoClient.connect('mongodb://127.0.0.1:27017/nodedb', function(err, db) {
+        if (err) throw err;
+        var products = db.collection('users');
+        products.find({}).toArray(function (err,data) {
+            //nếu lỗi
+            if (err) throw err;
+            //nếu thành công
+            res.send(data)
         });
+    });
+})
 
-    }
-});
+*/
+app.get('/', (req, res) => {
+ res.sendFile(path.join(__dirname + '/index.html'));
+})
+var portscanner = require('portscanner');
 
-server.listen(PORT, function () {
-    console.log("Listening on port http://localhost:3000");
-});
+portscanner.findAPortNotInUse([5000, 3010], '127.0.0.1').then(port => {
+    console.log('Port' + port + ' is available!');
+  const p = process.env.PORT || 5000;
+    app.listen(port, () => {
+        console.log(`Example app listening at http://localhost:${p}`)
+    })
+})
