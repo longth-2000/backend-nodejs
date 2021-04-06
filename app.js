@@ -7,6 +7,7 @@ var mongoClient = require('mongodb').MongoClient;
 var routes = require('./src/nodejs/routes/routes');
 app.use(bodyParser.json());
 app.use(cors());
+const PORT = process.env.PORT || 6000;
 //ket noi router
 app.use(routes);
 /*
@@ -29,9 +30,8 @@ app.get('/', (req, res) => {
 })
 var portscanner = require('portscanner');
 
-portscanner.findAPortNotInUse([5000, 3010], '127.0.0.1').then(port => {
-    console.log('Port' + port + ' is available!');
-    app.listen(port, () => {
+
+    app.listen(PORT, () => {
         console.log(`Example app listening at http://localhost:5000`)
-    })
-})
+    });
+
