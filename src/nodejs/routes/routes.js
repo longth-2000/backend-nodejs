@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var mongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://duongsau1211:dolananh@cluster0.zq7aa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://duongsau1211:dolananh@cluster0.zq7aa.mongodb.net/DB?retryWrites=true&w=majority";
 router.post("/register", function (req, res) {
 
   var dataform = req.body;
