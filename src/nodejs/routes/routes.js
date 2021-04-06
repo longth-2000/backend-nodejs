@@ -1,11 +1,11 @@
 var express = require('express')
 var router = express.Router()
 var mongoClient = require('mongodb').MongoClient;
-
+const uri = "mongodb+srv://duongsau1211:dolananh@cluster0.zq7aa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 router.post("/register", function (req, res) {
-  /*
+
   var dataform = req.body;
-  mongoClient.connect('mongodb://127.0.0.1:27017/nodedb', function (err, db) {
+  mongoClient.connect(uri, function (err, db) {
     if (err) throw err;
     //use product collection
     var products = db.collection('users');
@@ -27,7 +27,6 @@ router.post("/register", function (req, res) {
     }
   });
 
-   */
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 module.exports = router
