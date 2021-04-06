@@ -2,7 +2,7 @@
   "name": "back",
   "version": "1.0.0",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "author": "Skipperhoa",
   "license": "ISC",
@@ -99,6 +99,6 @@
     "portscanner": "^2.2.0",
     "socket.io": "^2.1.0"
   },
-  "main": "index.js",
+  "main": "app.js",
   "description": ""
 }
