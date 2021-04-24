@@ -39,6 +39,7 @@ app.use('/api-test', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *       201:
  *         description: Created
  */
+
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());

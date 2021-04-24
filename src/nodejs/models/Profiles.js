@@ -8,6 +8,8 @@ const Profiles = new Schema ({
     Age:String,
     Sex:String,
     Level:String,
-    Image:String
+    Image:String,
+    Province:String,
+    District:String
 })
 module.exports= mongoose.model("profiles", Profiles)

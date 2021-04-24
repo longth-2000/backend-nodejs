@@ -1,27 +1,63 @@
 const profile = require("../models/Profiles")
-var levelList = []
+const axios = require("axios")
+var optionDataList = {
+    "levelOption": [],
+    "sexOption": [],
+    "provinceOption": [],
+    "ageOptionMin": [],
+    "ageOptionMax": []
+}
+var ageMin = ""
+var ageMax = ""
 class SearchController {
     search(req, res) {
-      /*  if (req.body.levelOption == null) {
-            levelList = ["THCS", "THPT", "Đại học", "Thạc sĩ"]
-        }
-        else {
-            levelList.push(req.body.levelOption)
-        }  */
-        const requestList = Object.getOwnPropertyNames(req.body)
+     const requestList = Object.getOwnPropertyNames(req.body)
+        console.log(requestList)
+        const optionList = ["sexOption", "levelOption", "ageOptionMin", "ageOptionMax", "provinceOption"]
+        optionList.forEach((items) => {
+            if (requestList.includes(items) == false) {
+                switch (items) {
+                    case "levelOption": {
+                        optionDataList.levelOption = ["THCS", "THPT", "Đại học", "Thạc sĩ"]
+                    }
+                    case "sexOption": {
+                        optionDataList.sexOption = ["Nam", "Nữ"]
+                    }
+                    case "ageOptionMin": {
+                        ageMin = "18"
+                    }
+                    case "ageOptionMax": {
+                        ageMax = "60"
+                    }
+                    case "provinceOption": {
+                        axios.get("https://thongtindoanhnghiep.co/api/city").then(response => {
+                            response.data.LtsItem.forEach((items) => {
+                                optionDataList.provinceOption.push(items.Title)
+                            }) 
+                        }) 
+                    }
+                }
+            }
+            else {
+                optionDataList[items]=[]
+                optionDataList[items].push(req.body[items])
+                console.log(optionDataList[items])
+            }
+        })
         profile.find({
-            Level: { $in: levelList },
-            Sex: req.body.sexOption,
-            Age: { $gte: req.body.ageOptionMin, $lte: req.body.ageOptionMax }
+            Level: { $in: optionDataList.levelOption },
+           /*  Sex: { $in: optionDataList.sexOption }, */
+            Age: { $gte: ageMin, $lte: ageMax },
+            Province: { $in: optionDataList.provinceOption }   
         }, function (err, result) {
             if (err) res.send("error")
             else {
                 res.send(result);
-                levelList.splice(0, levelList.length)
+                optionList.forEach((items) => {
+                    optionDataList[items].splice(0, optionDataList[items].length)
+                })
             }
         })
-        console.log(levelList)
-        console.log(req.body)
     }
 }
 module.exports = new SearchController

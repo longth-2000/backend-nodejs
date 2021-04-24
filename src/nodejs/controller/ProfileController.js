@@ -1,8 +1,9 @@
 const Profiles = require("../models/Profiles")
+const User = require("../models/Users")
 const profileValidation = require("../auth/profileValidation")
 class ProfileController {
     createProfile(req, res) {
-        const { error } = profileValidation({
+       const { error } = profileValidation({
             Firstname: req.body.firstname,
             Lastname: req.body.lastname,
             Age: req.body.age
@@ -15,6 +16,8 @@ class ProfileController {
                 Age: req.body.age,
                 Sex:req.body.sex,
                 Level: req.body.level,
+                Province: req.body.provinceOption,
+                District: req.body.districtOption,
                 Image: req.file.filename,
                 Index: process.index._id    
             })
@@ -25,7 +28,9 @@ class ProfileController {
                     message: "Create profiles sucessfully"
                 })
             })
-         }
+          
+         }  
+    /*      res.send(req.body) */     
     }
     showProfile(req, res) {
        Profiles.find({Index:req.params.id}, function (err, result) {
