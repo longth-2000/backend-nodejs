@@ -1,12 +1,16 @@
 const profile = require("../models/Profiles")
-class AdvancedSearchController{
-     search(req,res){
-      profile.find({FirstName:{$regex:req.body.advancedSearch}},function(error,result) {
-            if(error) res.send(error)
+const splitString = require("../template/splitString")
+class AdvancedSearchController {
+    search(req, res) {
+       
+         /*   profile.collection.dropIndexes(function (error, result) {
+            if(error) console.log("error")
+            else console.log("result")
+         })   */
+         profile.find({ $text: { $search: req.body.advancedSearch } }, function (error, result) {
+            if (error) res.send(error)
             else res.send(result)
-        }) 
-       /*  res.send(req.body.advancedSearch) */
-    } 
-    
+        })  
+    }
 }
 module.exports = new AdvancedSearchController

@@ -1,10 +1,7 @@
 const Joi = require('@hapi/joi');
 const profileValidation = function (data) {
     const schema = Joi.object({
-         Firstname: Joi.string()
-            .required(),
-           
-        Lastname: Joi.string()
+        Fullname: Joi.string()
             .required(),
             
         Age: Joi.string()

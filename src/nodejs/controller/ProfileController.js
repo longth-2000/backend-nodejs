@@ -1,22 +1,24 @@
 const Profiles = require("../models/Profiles")
 const User = require("../models/Users")
 const profileValidation = require("../auth/profileValidation")
+const splitString = require("../template/splitString")
 class ProfileController {
     createProfile(req, res) {
        const { error } = profileValidation({
-            Firstname: req.body.firstname,
-            Lastname: req.body.lastname,
+            Fullname: req.body.fullname,
             Age: req.body.age
         });
         if (error) res.send(error)
         else {
             var profile = new Profiles({
-                FirstName: req.body.firstname,
-                LastName: req.body.lastname,
+                FullName: req.body.fullname,
+                FullNameSearch:splitString(req.body.fullname),
                 Age: req.body.age,
                 Sex:req.body.sex,
                 Level: req.body.level,
+                LevelSearch:splitString(req.body.level),
                 Province: req.body.provinceOption,
+                ProvinceSearch:splitString(req.body.provinceOption),
                 District: req.body.districtOption,
                 Image: req.file.filename,
                 Index: process.index._id    
@@ -40,8 +42,7 @@ class ProfileController {
                 res.send(result);
             }
         });   
-        
-        
     }
+    
 }
 module.exports = new ProfileController
