@@ -33,8 +33,9 @@ class ProfileController {
           
     
         }   */
-        res.send(req.body)
+       /*  res.send(req.body) */
         res.send(req.file)
+  
     }
     showProfileById(req, res) {
         Profiles.find({ Index: req.params.id }, function (err, result) {
