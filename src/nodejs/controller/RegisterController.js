@@ -21,16 +21,18 @@ class RegisterController {
                     accountUser.save(function (error, user) {
                         if (error) console.log(error)
                         else {
+                            process.loginIndex = user._id
                             fs.mkdir(`./src/nodejs/assets/images/upload/${user._id}`, function (err) {
                                 if (err) {
                                     console.log(err)
                                 } else {
                                     console.log("New directory successfully created.")
                                 }
-                            })
+                            }) 
                             res.send({
                                 state: "successful",
-                                message: "Register Successfully"
+                                message: "Register Successfully",
+                                id:user._id
                             })
                         }
                     })
@@ -41,10 +43,7 @@ class RegisterController {
                     message: "Account is existed"
                 })
             });
-            /*  User.find({}, function (error, result) {
-                 if (error) console.log(error)
-                 else console.log(result)
-             }) */
+
         }
     }
 

@@ -15,10 +15,10 @@ var ageMax = ""
 class SearchController {
     search(req, res) {
         const requestList = Object.getOwnPropertyNames(req.body)
-        console.log(requestList)
+      
         const optionList = ["levelOption", "sexOption", "ageOptionMin", "ageOptionMax", "provinceOption"]
         optionList.forEach((items) => {
-            if (requestList.includes(items) == false) {
+            if (req.body[items] == "No option"||requestList.includes(items) == false) {
                 switch (items) {
                     case "levelOption": {
                         optionDataList.levelOption = ["THCS", "THPT", "Đại học", "Thạc sĩ"]
@@ -38,7 +38,7 @@ class SearchController {
                     }
                     case "provinceOption": {
                         process.provinceList.LtsItem.forEach((items) => {
-                              optionDataList.provinceOption.push(items.Title)
+                            optionDataList.provinceOption.push(items.Title)
                         })
                     }
                 }
@@ -48,22 +48,24 @@ class SearchController {
                 optionDataList[items].push(req.body[items])
             }
         })
-        console.log(optionDataList.levelOption)
-        console.log(optionDataList.provinceOption)
+        console.log(optionDataList.sexOption)
+        console.log(ageMax)
+
         profile.find({
             Level: { $in: optionDataList.levelOption },
             Sex: { $in: optionDataList.sexOption },
-            Age: { $gte: ageMin, $lte: ageMax },
-            Province: { $in: optionDataList.provinceOption }
+            Age: { $gte: ageMin, $lte: ageMax }, 
+           Province: { $in: optionDataList.provinceOption } 
         }, function (err, result) {
             if (err) res.send("error")
             else {
                 res.send(result);
                 optionList.forEach((items) => {
-             optionDataList[items].splice(0, optionDataList[items].length) 
+                    optionDataList[items].splice(0, optionDataList[items].length)
                 })
             }
         })
+
     }
 }
 module.exports = new SearchController

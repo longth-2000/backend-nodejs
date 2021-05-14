@@ -6,7 +6,10 @@ var multer = require('multer')
 var path = require("path")
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
-
+app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.json());
+app.use(cors());
+app.use(express.static(path.join(__dirname, 'assets')))
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
@@ -39,14 +42,10 @@ app.use('/api-test', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *       201:
  *         description: Created
  */
+ app.use(express.json()) // for parsing application/json
 
-app.use(express.json()) // for parsing application/json
-app.use(express.urlencoded({ extended: true }))
-app.use(bodyParser.json());
-app.use(cors());
-app.use(express.static(path.join(__dirname, 'assets')))
 var routers = require('./routes');
-routers(app) 
+routers(app)  
 const database = require ("../nodejs/config/database")
 database.connect()
 app.listen(process.env.PORT || 5000)

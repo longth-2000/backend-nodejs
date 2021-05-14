@@ -5,7 +5,7 @@ const Profiles = new Schema({
     Index: String,
     FullName: String,
     FullNameSearch:String,
-    Age: String,
+    Age:Number,
     Sex: String,
     Level: String,
     LevelSearch:String,
