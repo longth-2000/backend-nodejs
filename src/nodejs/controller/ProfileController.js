@@ -4,7 +4,7 @@ const profileValidation = require("../auth/profileValidation")
 const splitString = require("../template/splitString");
 class ProfileController {
     createProfile(req, res) {
-          const { error } = profileValidation({
+      /*     const { error } = profileValidation({
             Fullname: req.body.FullName,
             Age: req.body.Age
         });
@@ -29,9 +29,10 @@ class ProfileController {
                     state: true,
                     message: "Create profiles sucessfully"  
                 })
-            }) 
-           
-
+            })  */
+            res.send(req.body)
+            res.send(req.file)
+    
         }   
        
   
