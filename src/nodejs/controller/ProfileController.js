@@ -29,13 +29,12 @@ class ProfileController {
                     state: true,
                     message: "Create profiles sucessfully"  
                 })
-            })  */
-            res.send(req.body)
-            res.send(req.file)
+            })  
+          
     
-        }   
-       
-  
+        }   */
+        res.send(req.body)
+        res.send(req.file)
     }
     showProfileById(req, res) {
         Profiles.find({ Index: req.params.id }, function (err, result) {
