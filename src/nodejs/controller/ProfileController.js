@@ -4,12 +4,12 @@ const profileValidation = require("../auth/profileValidation")
 const splitString = require("../template/splitString");
 class ProfileController {
     createProfile(req, res) {
-      /*     const { error } = profileValidation({
+        const { error } = profileValidation({
             Fullname: req.body.FullName,
             Age: req.body.Age
         });
-        if (error) res.send(error) 
-         else { 
+        if (error) res.send(error)
+        else {
             var profile = new Profiles({
                 FullName: req.body.FullName,
                 FullNameSearch: splitString(req.body.FullName),
@@ -25,17 +25,16 @@ class ProfileController {
             })
             profile.save(function (error, user) {
                 if (error) console.log(error)
-                else res.send( {
+                else res.send({
                     state: true,
-                    message: "Create profiles sucessfully"  
+                    message: "Create profiles sucessfully"
                 })
-            })  
-          
-    
-        }   */
-       /*  res.send(req.body) */
-        res.send(req.file)
-  
+            })
+
+
+        }
+
+
     }
     showProfileById(req, res) {
         Profiles.find({ Index: req.params.id }, function (err, result) {
@@ -56,7 +55,7 @@ class ProfileController {
         });
     }
     showProfileByArray(req, res) {
-        Profiles.find({ }, (error, result) => {
+        Profiles.find({}, (error, result) => {
             if (error) res.send(error)
             else res.send(result)
         })

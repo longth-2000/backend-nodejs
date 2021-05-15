@@ -55,7 +55,8 @@ class SearchController {
             Level: { $in: optionDataList.levelOption },
             Sex: { $in: optionDataList.sexOption },
             Age: { $gte: ageMin, $lte: ageMax }, 
-           Province: { $in: optionDataList.provinceOption } 
+            Province: { $in: optionDataList.provinceOption },
+            Index:{$nin:req.body.index}
         }, function (err, result) {
             if (err) res.send("error")
             else {
@@ -65,6 +66,7 @@ class SearchController {
                 })
             }
         })
+        console.log(req.body)
 
     }
 }
