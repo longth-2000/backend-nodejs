@@ -36,11 +36,11 @@ class SearchController {
                         ageMax = "60"
                         break;
                     }
-                    case "provinceOption": {
+                   /*  case "provinceOption": {
                         process.provinceList.LtsItem.forEach((items) => {
                             optionDataList.provinceOption.push(items.Title)
                         })
-                    }
+                    } */
                 }
             }
             else {
@@ -55,8 +55,8 @@ class SearchController {
             Level: { $in: optionDataList.levelOption },
             Sex: { $in: optionDataList.sexOption },
             Age: { $gte: ageMin, $lte: ageMax }, 
-            Province: { $in: optionDataList.provinceOption },
-            Index:{$nin:req.body.index}
+           /*  Province: { $in: optionDataList.provinceOption }, 
+          /*   Index:{$nin:req.body.index} */
         }, function (err, result) {
             if (err) res.send("error")
             else {
