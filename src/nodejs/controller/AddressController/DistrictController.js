@@ -1,7 +1,7 @@
 const axios = require("axios")
 class DistrictController {
     getDistrictInformation(req, res){
-      axios.get(`https://thongtindoanhnghiep.co/api/city/${req.params.id}/district`).then(response => {
+      axios.get(`https://api.mysupership.vn/v1/partner/areas/district?province=${req.params.id}`).then(response => {
           res.json(response.data)
       })
     }

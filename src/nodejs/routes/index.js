@@ -6,6 +6,7 @@ const searchRouter = require("../routes/search")
 const provinceRouter = require ("../routes/addressRouter/province")
 const reactRouter = require("../routes/react")
 const viewRouter = require("../routes/view")
+const chatRouter = require("../routes/chat")
 function route(app){
   app.use("/register",registerRouter)
   app.use("/profile" , storageImage.upload.single("fileUpload") ,profileRouter) 
@@ -13,6 +14,7 @@ function route(app){
   app.use("/address",provinceRouter)
   app.use("/react",reactRouter)
   app.use("/view", viewRouter)
+  app.use("/chat",chatRouter)
   app.use("/", loginRouter)
 }
 module.exports = route

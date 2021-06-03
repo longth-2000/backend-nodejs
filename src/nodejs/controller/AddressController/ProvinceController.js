@@ -2,9 +2,10 @@ const axios = require("axios")
 class ProvinceController {
     provinceList = [];
     getProvinceInformation(req, res) {
-        axios.get("https://thongtindoanhnghiep.co/api/city").then(response => {
+        axios.get("https://api.mysupership.vn/v1/partner/areas/province").then(response => {
             res.json(response.data)
-            process.provinceList = response.data
+            process.provinceList = response.data.results
+            
         })
     } 
 }
