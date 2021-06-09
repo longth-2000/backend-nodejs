@@ -31,10 +31,10 @@ class ReactionController {
         })
     }
     deleteProfile(req, res) {
-         React.deleteOne({ IndexHost: req.body.ID }, (error, response) => {
+        React.deleteOne({ IndexHost: req.body.ID }, (error, response) => {
             if (error) res.send(error)
             else res.send(response)
-        })  
+        })
     }
 }
 module.exports = new ReactionController
