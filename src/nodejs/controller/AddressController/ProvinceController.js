@@ -5,6 +5,7 @@ class ProvinceController {
         axios.get("https://api.mysupership.vn/v1/partner/areas/province").then(response => {
             res.json(response.data)
             process.provinceList = response.data.results
+            console.log(process.provinceList)
             
         })
     } 

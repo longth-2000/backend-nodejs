@@ -15,7 +15,6 @@ var ageMax = ""
 class SearchController {
     search(req, res) {
         const requestList = Object.getOwnPropertyNames(req.body)
-
         const optionList = ["levelOption", "sexOption", "ageOptionMin", "ageOptionMax", "provinceOption"]
         optionList.forEach((items) => {
             if (req.body[items] == "No option" || requestList.includes(items) == false) {
@@ -37,10 +36,10 @@ class SearchController {
                         break;
                     }
                     case "provinceOption": {
-                        process.provinceList.LtsItem.forEach((items) => {
-                            optionDataList.provinceOption.push(items.Title)
+                        process.provinceList.forEach((items) => {
+                            optionDataList.provinceOption.push(items.name)
                         })
-                    }
+                    } 
                 }
             }
             else {

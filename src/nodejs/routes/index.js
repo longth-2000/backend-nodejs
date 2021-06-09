@@ -9,7 +9,7 @@ const viewRouter = require("../routes/view")
 const chatRouter = require("../routes/chat")
 function route(app){
   app.use("/register",registerRouter)
-  app.use("/profile" , storageImage.upload.single("fileUpload") ,profileRouter) 
+  app.use("/profile" ,storageImage.upload.single("fileUpload") ,profileRouter) 
   app.use("/search",searchRouter)
   app.use("/address",provinceRouter)
   app.use("/react",reactRouter)

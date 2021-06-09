@@ -6,7 +6,10 @@ class ProfileController {
     createProfile(req, res) {
         const { error } = profileValidation({
             Fullname: req.body.FullName,
-            Age: req.body.Age
+            Province: req.body.Province,
+            District:req.body.District,
+            Sex:req.body.Sex,
+            Level:req.body.Level
         });
         if (error) res.send(error)
         else {
@@ -21,7 +24,7 @@ class ProfileController {
                 ProvinceSearch: splitString(req.body.Province),
                 District: req.body.District,
                 Image: req.file.filename,
-                Index: process.loginIndex
+                Index: req.cookies.token
             })
             profile.save(function (error, user) {
                 if (error) console.log(error)
@@ -30,11 +33,7 @@ class ProfileController {
                     message: "Create profiles sucessfully"
                 })
             })
-
-
         }
-
-
     }
     showProfileById(req, res) {
         Profiles.find({ Index: req.params.id }, function (err, result) {
@@ -75,9 +74,15 @@ class ProfileController {
             if (error) res.send("error")
             else res.send("Sucessfully")
         })
-
-
     }
-
+    changeAvatar(req, res) {
+        console.log(req.file.filename)
+        Profiles.updateOne({ Index: req.params.id }, {
+            Image: req.file.filename
+        }).then((result, error) => {
+            if (error) res.send(error)
+            else res.send(req.file.filename)
+        })
+    }
 }
 module.exports = new ProfileController
