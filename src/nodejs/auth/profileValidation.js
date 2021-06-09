@@ -14,17 +14,17 @@ const profileValidation = function (data) {
         District: Joi.string()
             .required()
             .messages({
-                'any.required': `Huyện không được để trống`
+                'string.empty': `Huyện không được để trống`
             }),
         Sex: Joi.string()
             .required()
             .messages({
-                'any.required': `Giới tính không được để trống`
+                'string.empty': `Giới tính không được để trống`
             }),
         Level: Joi.string()
             .required()
             .messages({
-                'any.required': `Trình độ học vấn được để trống`
+                'string.empty': `Trình độ học vấn được để trống`
             }),
 
     }).options({ abortEarly: false });
