@@ -1,8 +1,8 @@
 var multer = require('multer')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-  cb(null, `src/nodejs/assets/images/upload/${req.cookies.token}`) 
-   
+    /*  cb(null, `src/nodejs/assets/images/upload/${req.cookies.token}`)  */
+    res.send("token" + req.cookies.token)
   },
   filename: function (req, file, cb) {
     var fileName = file.originalname;
