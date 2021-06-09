@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser')
 app.use(cookieParser()) 
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
-app.use(cors({credentials: true, origin: 'https://vuejs-s.web.app'}));
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'assets')))
 const routers = require('./routes');
 routers(app)

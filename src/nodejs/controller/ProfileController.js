@@ -24,7 +24,7 @@ class ProfileController {
                 ProvinceSearch: splitString(req.body.Province),
                 District: req.body.District,
                 Image: req.file.filename,
-                Index: req.cookies.token
+                Index: req.body.cookie
             })
             profile.save(function (error, user) {
                 if (error) console.log(error)
@@ -61,8 +61,8 @@ class ProfileController {
     }
     editProfile(req, res) {
         Profiles.updateOne({ Index: req.params.id }, {
-            FullName: req.body.FullName,
-            FullNameSearch: splitString(req.body.FullName),
+            FullName: req.body.data.FullName,
+            FullNameSearch: splitString(req.body.data.FullName),
             Age: req.body.Age,
             Sex: req.body.Sex,
             Level: req.body.Level,
