@@ -7,11 +7,16 @@ const path = require("path")
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 const cookieParser = require('cookie-parser')
-app.use(cookieParser()) 
+app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'assets')))
+app.all('/', function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next()
+});
 const routers = require('./routes');
 routers(app)
 const database = require("../nodejs/config/database")
