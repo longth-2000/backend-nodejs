@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'assets')))
+app.use(cors({ origin: true }));
 
 const routers = require('./routes');
 routers(app)
