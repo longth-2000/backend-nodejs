@@ -17,9 +17,5 @@ function route(app) {
   app.use("/view", viewRouter)
   app.use("/chat", chatRouter)
   app.use("/", loginRouter)
-  app.all('/', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  });
 }
 module.exports = route
