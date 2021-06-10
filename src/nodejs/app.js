@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'assets')))
-app.all('/', function (req, res, next) {
+app.all('/home', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next()
