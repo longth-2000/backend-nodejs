@@ -61,8 +61,8 @@ class ProfileController {
     }
     editProfile(req, res) {
         Profiles.updateOne({ Index: req.params.id }, {
-            FullName: req.body.data.FullName,
-            FullNameSearch: splitString(req.body.data.FullName),
+            FullName: req.body.FullName,
+            FullNameSearch: splitString(req.body.FullName),
             Age: req.body.Age,
             Sex: req.body.Sex,
             Level: req.body.Level,
