@@ -17,11 +17,8 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
-
 const routers = require('./routes');
 routers(app)
-
 const database = require("../nodejs/config/database")
 database.connect()
 const io = require('socket.io')(server);
