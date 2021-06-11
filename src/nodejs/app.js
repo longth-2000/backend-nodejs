@@ -12,13 +12,22 @@ app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'assets')))
-app.options('*', cors());
-
-
-
+var whitelist = ['https://sfbserver.herokuapp.com']; //white list consumers
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(null, false);
+    }
+  },
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  credentials: true, //Credentials are cookies, authorization headers or TLS client certificates.
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept']
+};
 const routers = require('./routes');
 routers(app)
-
 const database = require("../nodejs/config/database")
 database.connect()
 const io = require('socket.io')(server);
