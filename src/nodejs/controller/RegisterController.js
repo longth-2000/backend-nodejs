@@ -22,7 +22,7 @@ class RegisterController {
                         if (error) console.log(error)
                         else {
                             process.loginIndex = user._id
-                            fs.mkdir(`./src/nodejs/${user._id}`, function (err) {
+                            fs.mkdir(`./src/nodejs/assets`, function (err) {
                                 if (err) {
                                     console.log(err)
                                 } else {
