@@ -1,7 +1,7 @@
 var multer = require('multer')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, `src/nodejs/${req.body.cookie}`)
+    cb(null, `src/nodejs`)
 
   },
   filename: function (req, file, cb) {
