@@ -4,6 +4,7 @@ const profileValidation = require("../auth/profileValidation")
 const splitString = require("../template/splitString");
 class ProfileController {
     createProfile(req, res) {
+        console.log(req.body)
         const { error } = profileValidation({
             Fullname: req.body.FullName,
             Province: req.body.Province,
